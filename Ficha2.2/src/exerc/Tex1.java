@@ -103,7 +103,7 @@ public class Tex1 {
                 
                 int[] arrayCase3 = new int[numeroDeInteirosCase3];
             System.out.println("Elementos do array: ");
-            for(int i = 0; i < numeroDeInteiros; i++) {
+            for(int i = 0; i < numeroDeInteirosCase3; i++) {
             arrayCase3[i] = ler.nextInt();
                 }
 
