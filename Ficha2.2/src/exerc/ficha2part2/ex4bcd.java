@@ -1,6 +1,8 @@
 package ficha2part2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ex4bcd {
@@ -20,9 +22,37 @@ public class ex4bcd {
         }
         return maiorString;
     }
-
     // Metodo determinar um array com as Strings que aparecem mais que uma vez: c)
-    
+    public static ArrayList<String> determinarStringsRepetidas(ArrayList<String> arrayOriginal) {
+        ArrayList<String> arrayRepetidos = new ArrayList<>();
+        HashMap<String, Integer> contador = new HashMap<>();
+        /* Um HashMap em Java é uma estrutura de dados que permite armazenar pares chave-valor. Cada chave é única e mapeada para um valor correspondente. 
+        Isso permite que você 
+        associe dados (valores) a identificadores (chaves) de maneira eficiente, permitindo recuperação rápida dos valores com base nas chaves
+        */ 
+
+        for(String str : arrayOriginal) {
+            contador.put(str, contador.getOrDefault(str, 0) + 1);
+        }
+        for(Map.Entry<String, Integer> entry : contador.entrySet()) {
+            if(entry.getValue() > 1) {
+                arrayRepetidos.add(entry.getKey());
+            }
+        }
+        return arrayRepetidos;
+    }    
+
+    //Metodo para determinar quantas vezes  um String ocorre no array: d)
+    public static int contarOcorrencias(String strPedido, ArrayList<String> arrayOriginal) {
+        int contador = 0; 
+
+        for(String str : arrayOriginal) {
+            if (str.equals(strPedido)) {
+                contador++;
+            }
+        }
+        return contador; 
+    }
     
 
     
@@ -43,6 +73,19 @@ public class ex4bcd {
         //b)
         String maiorString = determinarMaiorString(arrayStrings);
         System.out.println("\nMaior string inserida: " + maiorString);
+
+        //c) 
+        ArrayList<String> arrayRepetidos = determinarStringsRepetidas(arrayStrings);
+        System.out.println("\nStrings que aparecem mais que uma vez: ");
+        for(String str : arrayRepetidos) {
+            System.out.println(str);
+        }
+
+        //d)
+        System.out.println("\nDigite uma string para contar as ocorrencias: ");
+        String strPedido = ler.nextLine();
+        int ocorrencias = contarOcorrencias(strPedido, arrayStrings);
+        System.out.println("A string '" + strPedido + "' ocorre " + ocorrencias + " vezes");
     }
     
 }
